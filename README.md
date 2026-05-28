@@ -16,25 +16,22 @@ A Model Context Protocol (MCP) server that provides intelligent access to discor
 ## Installation
 
 ```bash
+# From GitHub Packages (recommended)
 npm install @bulzykrown/mcp-discordjs
-# or with pnpm
-pnpm add @bulzykrown/mcp-discordjs
+
+# Quick test with npx
+npx -y @bulzykrown/mcp-discordjs
 ```
 
-### Instalar desde GitHub Packages
+### Manual Installation
 
-Si el paquete no está disponible en npm público, configurar el registry de GitHub Packages:
-
-```bash
-# Configurar .npmrc para este proyecto
-echo "@bulzykrown:registry=https://npm.pkg.github.com/" >> ~/.npmrc
-# o por proyecto en .npmrc del repositorio
-```
-
-Luego instalar:
+If you need to install from source:
 
 ```bash
-npm install @bulzykrown/mcp-discordjs
+git clone https://github.com/bulzykrown/mcp-djs.git
+cd mcp-djs/packages/mcp-discordjs
+npm install
+npm run build
 ```
 
 ## Configuration
@@ -45,8 +42,8 @@ npm install @bulzykrown/mcp-discordjs
 {
   "mcpServers": {
     "discordjs": {
-      "command": "node",
-      "args": ["/path/to/node_modules/@bulzykrown/mcp-discordjs/build/index.js"]
+      "command": "npx",
+      "args": ["-y", "@bulzykrown/mcp-discordjs"]
     }
   }
 }
@@ -58,8 +55,8 @@ npm install @bulzykrown/mcp-discordjs
 {
   "mcpServers": {
     "discordjs": {
-      "command": "node",
-      "args": ["/path/to/node_modules/@bulzykrown/mcp-discordjs/build/index.js"]
+      "command": "npx",
+      "args": ["-y", "@bulzykrown/mcp-discordjs"]
     }
   }
 }
