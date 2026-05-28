@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "description": "Monorepo for MCP discord.js documentation server",
-  "packageManager": "pnpm@9.15.0",
   "workspaces": [
     "packages/*"
   ],
