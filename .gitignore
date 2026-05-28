@@ -30,7 +30,10 @@ Thumbs.db
 *.log
 npm-debug.log*
 
-# OpenSpec (keep specs in repo but not generated artifacts)
+# Atl (Gentle-AI skill registry)
+.atl/
+
+# OpenSpec archived (keep active changes)
 openspec/changes/archive/
 openspec/.cache/
 
