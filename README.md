@@ -16,7 +16,7 @@ A Model Context Protocol (MCP) server that provides intelligent access to discor
 ## Installation
 
 ```bash
-npm install @gentleman-programming/mcp-discordjs
+npm install @bulzykrown/mcp-discordjs
 ```
 
 ## Configuration
@@ -28,7 +28,7 @@ npm install @gentleman-programming/mcp-discordjs
   "mcpServers": {
     "discordjs": {
       "command": "node",
-      "args": ["/path/to/node_modules/@gentleman-programming/mcp-discordjs/build/index.js"]
+      "args": ["/path/to/node_modules/@bulzykrown/mcp-discordjs/build/index.js"]
     }
   }
 }
@@ -41,7 +41,7 @@ npm install @gentleman-programming/mcp-discordjs
   "mcpServers": {
     "discordjs": {
       "command": "node",
-      "args": ["/path/to/node_modules/@gentleman-programming/mcp-discordjs/build/index.js"]
+      "args": ["/path/to/node_modules/@bulzykrown/mcp-discordjs/build/index.js"]
     }
   }
 }

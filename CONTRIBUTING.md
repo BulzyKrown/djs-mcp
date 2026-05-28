@@ -6,7 +6,7 @@ Thank you for your interest in contributing!
 
 ```bash
 # Clone the repository
-git clone https://github.com/gentleman-programming/mcp-discordjs
+git clone https://github.com/bulzykrown/mcp-discordjs
 cd mcp-discordjs
 
 # Install dependencies
