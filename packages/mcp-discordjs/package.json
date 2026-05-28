@@ -12,7 +12,7 @@
     "build": "tsc && chmod 755 build/index.js",
     "watch": "tsc --watch",
     "start": "node build/index.js",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "pnpm run build",
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",

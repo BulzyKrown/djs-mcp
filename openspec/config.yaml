@@ -19,14 +19,14 @@ rules:
     - Document architecture decisions with rationale
   tasks:
     - Group by phase, use hierarchical numbering
-    - Keep tasks completable in one session
+    - Keep tasks completabale in one session
   apply:
     - Follow existing code patterns (index.ts registerTool pattern, fetcher.ts scrape pattern)
     tdd: false
-    test_command: "npm run test --prefix packages/mcp-discordjs"
+    test_command: "pnpm run test --workspace=@bulzykrown/mcp-discordjs"
   verify:
-    test_command: "npm run test --prefix packages/mcp-discordjs"
-    build_command: "npm run build --prefix packages/mcp-discordjs"
+    test_command: "pnpm run test --workspace=@bulzykrown/mcp-discordjs"
+    build_command: "pnpm run build --workspace=@bulzykrown/mcp-discordjs"
     coverage_threshold: 0
   archive:
     - Warn before merging destructive deltas

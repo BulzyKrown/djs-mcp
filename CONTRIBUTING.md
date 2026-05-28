@@ -11,16 +11,16 @@ cd mcp-discordjs
 
 # Install dependencies
 cd packages/mcp-discordjs
-npm install
+pnpm install
 
 # Build
-npm run build
+pnpm run build
 
 # Run tests
-npm test
+pnpm test
 
 # Run tests in watch mode
-npm test -- --watch
+pnpm test -- --watch
 ```
 
 ## Project Structure
@@ -52,19 +52,19 @@ packages/
 
 - TypeScript strict mode
 - ESM modules
-- Run `npm run build` before committing
+- Run `pnpm run build` before committing
 
 ## Testing
 
 ```bash
 # Run all tests
-npm test
+pnpm test
 
 # Run tests with coverage
-npm run test:coverage
+pnpm run test:coverage
 
 # Run tests in UI mode
-npm run test:ui
+pnpm run test:ui
 ```
 
 ## Commit Messages

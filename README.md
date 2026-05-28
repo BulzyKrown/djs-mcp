@@ -17,6 +17,24 @@ A Model Context Protocol (MCP) server that provides intelligent access to discor
 
 ```bash
 npm install @bulzykrown/mcp-discordjs
+# or with pnpm
+pnpm add @bulzykrown/mcp-discordjs
+```
+
+### Instalar desde GitHub Packages
+
+Si el paquete no está disponible en npm público, configurar el registry de GitHub Packages:
+
+```bash
+# Configurar .npmrc para este proyecto
+echo "@bulzykrown:registry=https://npm.pkg.github.com/" >> ~/.npmrc
+# o por proyecto en .npmrc del repositorio
+```
+
+Luego instalar:
+
+```bash
+npm install @bulzykrown/mcp-discordjs
 ```
 
 ## Configuration
@@ -152,9 +170,9 @@ npm install @bulzykrown/mcp-discordjs
 
 ```bash
 cd packages/mcp-discordjs
-npm install
-npm run build
-npm test
+pnpm install
+pnpm run build
+pnpm test
 ```
 
 ## Architecture

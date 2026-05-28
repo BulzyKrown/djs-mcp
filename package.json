@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "description": "Monorepo for MCP discord.js documentation server",
+  "packageManager": "pnpm@9.15.0",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build --workspace=@bulzykrown/mcp-discordjs",
-    "test": "npm run test --workspace=@bulzykrown/mcp-discordjs",
-    "lint": "npm run build --workspace=@bulzykrown/mcp-discordjs"
+    "build": "pnpm run build --workspace=@bulzykrown/mcp-discordjs",
+    "test": "pnpm run test --workspace=@bulzykrown/mcp-discordjs",
+    "lint": "pnpm run build --workspace=@bulzykrown/mcp-discordjs"
   },
   "keywords": [
     "mcp",
