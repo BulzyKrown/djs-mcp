@@ -32,9 +32,7 @@ jobs:
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@0fb7401b0677f9d4f6daeab53f83f85db8f80a0d
-        with:
-          version: 9
+        uses: pnpm/action-setup@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
