@@ -1,5 +1,6 @@
 name: Publish Package
 
+# Triggers: tag push, main push, or GitHub release
 on:
   push:
     branches:
@@ -9,19 +10,29 @@ on:
   release:
     types: [created]
 
+# Global permissions — minimal by default
+permissions:
+  contents: read
+  packages: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   publish:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     permissions:
       contents: read
       packages: write
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@0fb7401b0677f9d4f6daeab53f83f85db8f80a0d
         with:
           version: 9
 
@@ -31,6 +42,7 @@ jobs:
           node-version: '20'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@bulzykrown'
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
