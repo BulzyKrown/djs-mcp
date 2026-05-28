@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+
+# Build output
+build/
+dist/
+*.tsbuildinfo
+
+# Test coverage
+coverage/
+*.lcov
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# OpenSpec (keep specs in repo but not generated artifacts)
+openspec/changes/archive/
+openspec/.cache/
+
+# Temporary files
+tmp/
+temp/
+*.tmp

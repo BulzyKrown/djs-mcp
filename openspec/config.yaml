@@ -1,0 +1,44 @@
+# openspec/config.yaml — mcp-discordjs
+schema: spec-driven
+
+context: |
+  Tech stack: TypeScript 5.7 + Node.js 18+ + MCP SDK 1.0 + cheerio + zod + vitest
+  Architecture: MCP server with web-scraping doc fetcher; monorepo packages/
+  Issue: MCP targets discord.js high-level API; users need @discordjs/* low-level packages
+  Packages detected: @discordjs/core@2.4.0, @discordjs/rest@2.2.0, @discordjs/ws@2.0.4
+  Style: strict TypeScript, ES2022 target, Node16 module resolution
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+  specs:
+    - Use Given/When/Then for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Include sequence diagrams for complex flows
+    - Document architecture decisions with rationale
+  tasks:
+    - Group by phase, use hierarchical numbering
+    - Keep tasks completable in one session
+  apply:
+    - Follow existing code patterns (index.ts registerTool pattern, fetcher.ts scrape pattern)
+    tdd: false
+    test_command: "npm run test --prefix packages/mcp-discordjs"
+  verify:
+    test_command: "npm run test --prefix packages/mcp-discordjs"
+    build_command: "npm run build --prefix packages/mcp-discordjs"
+    coverage_threshold: 0
+  archive:
+    - Warn before merging destructive deltas
+
+testing:
+  strict_tdd: false
+  runner: vitest
+  layers:
+    unit: true
+    integration: true
+    e2e: false
+  coverage: true
+  linter: false
+  type_checker: true
+  formatter: false
