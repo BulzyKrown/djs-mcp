@@ -23,7 +23,7 @@ export interface VersionInfo {
 /**
  * Fallback version when detection fails.
  */
-const FALLBACK_VERSION = "14.26.4";
+const FALLBACK_VERSION = "14.27.0";
 
 /**
  * Cache duration for version info (24 hours).
@@ -58,6 +58,34 @@ export class VersionDetector {
 
     globalMetrics.recordCacheMiss();
     logger.info({}, "Detecting latest discord.js version...");
+
+    // Try official API docs versions endpoint first
+    try {
+      const response = await fetch(`${BASE_URL}/api/docs/versions?packageName=discord.js`, {
+        headers: {
+          "User-Agent": "mcp-discordjs/1.6.3 (Version Detector)",
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        const versions = (await response.json()) as Array<{ version?: string }>;
+        const semverPattern = /^\d+\.\d+\.\d+(?:-[\w.]+)?$/;
+        const latestMatch = versions.find((v) => v.version && semverPattern.test(v.version));
+        if (latestMatch?.version) {
+          const result: VersionInfo = {
+            version: latestMatch.version,
+            url: `${BASE_URL}/docs/packages/discord.js/${latestMatch.version}`,
+            detectedAt: Date.now(),
+          };
+          this.cache.set(cacheKey, result);
+          logger.info({}, `Detected version from API: ${latestMatch.version}`);
+          return result;
+        }
+      }
+    } catch (err) {
+      logger.debug({ err }, "Failed to fetch discord.js versions from API");
+    }
 
     try {
       const response = await fetch(`${BASE_URL}${DOCS_LANDING_PATH}`, {
@@ -113,9 +141,10 @@ export class VersionDetector {
   /**
    * Extract version from URLs in the page.
    */
-  private extractFromUrl($: cheerio.CheerioAPI): string | null {
-    // Look for /docs/packages/discord.js/X.Y.Z pattern
-    const linkPattern = /\/docs\/packages\/discord\.js\/(\d+\.\d+\.\d+(?:-[\w.]+)?)/i;
+  private extractFromUrl($: cheerio.CheerioAPI, packageName = "discord.js"): string | null {
+    // Look for /docs/packages/<packageName>/X.Y.Z pattern
+    const escapedPkg = packageName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const linkPattern = new RegExp(`\\/docs\\/packages\\/${escapedPkg}\\/(\\d+\\.\\d+\\.\\d+(?:-[\\w.]+)?)/?`, "i");
     let version: string | null = null;
 
     // Check all links
@@ -219,7 +248,7 @@ export class VersionDetector {
       const docsPath = `/docs/packages/${packageName}`;
       const response = await fetch(`${BASE_URL}${docsPath}`, {
         headers: {
-          "User-Agent": "mcp-discordjs/1.0.0 (Version Detector)",
+          "User-Agent": "mcp-discordjs/1.6.3 (Version Detector)",
           Accept: "text/html",
         },
       });
@@ -233,7 +262,7 @@ export class VersionDetector {
       const $ = cheerio.load(html);
 
       // Try to extract version from page content
-      const versionFromUrl = this.extractFromUrl($);
+      const versionFromUrl = this.extractFromUrl($, packageName);
       if (versionFromUrl) {
         const result: VersionInfo = {
           version: versionFromUrl,
@@ -266,20 +295,22 @@ export class VersionDetector {
   }
 
   /**
- * Fallback versions per package.
- */
-private static readonly PACKAGE_FALLBACK_VERSIONS: Record<string, string> = {
-  "discord.js": "14.26.4",
-  "builders": "14.26.4",
-  "collection": "14.26.4",
-  "core": "2.4.0",
-  "rest": "2.6.1",
-  "ws": "2.0.4",
-  "voice": "2.5.0",
-  "structures": "14.26.4",
-  "util": "14.26.4",
-  "formatters": "14.26.4",
-};
+   * Fallback versions per package.
+   */
+  private static readonly PACKAGE_FALLBACK_VERSIONS: Record<string, string> = {
+    "discord.js": "14.27.0",
+    "builders": "1.14.1",
+    "collection": "2.1.1",
+    "core": "2.6.0",
+    "rest": "2.6.3",
+    "ws": "2.0.4",
+    "voice": "0.19.2",
+    "structures": "14.27.0",
+    "util": "1.2.0",
+    "formatters": "0.6.2",
+    "brokers": "0.9.0",
+    "proxy": "0.1.0",
+  };
 
 /**
  * Get fallback version info for a specific package.
