@@ -1,6 +1,6 @@
 {
   "name": "@bulzykrown/mcp-discordjs",
-  "version": "1.6.3",
+  "version": "1.6.5",
   "description": "Model Context Protocol server for discord.js documentation - 17 tools for searching classes, interfaces, enums, methods, and more",
   "type": "module",
   "main": "./build/index.js",

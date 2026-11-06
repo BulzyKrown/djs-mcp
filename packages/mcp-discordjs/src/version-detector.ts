@@ -63,7 +63,7 @@ export class VersionDetector {
     try {
       const response = await fetch(`${BASE_URL}/api/docs/versions?packageName=discord.js`, {
         headers: {
-          "User-Agent": "mcp-discordjs/1.6.3 (Version Detector)",
+          "User-Agent": "mcp-discordjs/1.6.5 (Version Detector)",
           Accept: "application/json",
         },
       });
@@ -248,7 +248,7 @@ export class VersionDetector {
       const docsPath = `/docs/packages/${packageName}`;
       const response = await fetch(`${BASE_URL}${docsPath}`, {
         headers: {
-          "User-Agent": "mcp-discordjs/1.6.3 (Version Detector)",
+          "User-Agent": "mcp-discordjs/1.6.5 (Version Detector)",
           Accept: "text/html",
         },
       });
@@ -301,7 +301,7 @@ export class VersionDetector {
     "discord.js": "14.27.0",
     "builders": "1.14.1",
     "collection": "2.1.1",
-    "core": "2.6.0",
+    "core": "2.7.0",
     "rest": "2.6.3",
     "ws": "2.0.4",
     "voice": "0.19.2",
